@@ -29,6 +29,7 @@ Installation
 •	CRUDMongoModule v1-This module provides CRUD operations and interfaces with the PyMongo client.
 
 Usage
+
 @app.callback(
     Output('datatable-id', 'data'),
     [Input('filter-type', 'value')]
@@ -43,8 +44,7 @@ def update_dashboard(filter_type):
             ]
         }
     else:
-        query = {'animal_type': 'Dog'}
-    
+        query = {'animal_type': 'Dog'}    
     df = pd.DataFrame.from_records(shelter.read(query))
     if '_id' in df.columns:
         df.drop(columns=['_id'], inplace=True)
