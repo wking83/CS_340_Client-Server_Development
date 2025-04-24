@@ -28,24 +28,4 @@ Installation
 •	Pandas 1.5.3: Table Generation and data wrangling. Gives user manipulation ability.
 •	CRUDMongoModule v1-This module provides CRUD operations and interfaces with the PyMongo client.
 
-Usage
 
-@app.callback(
-    Output('datatable-id', 'data'),
-    [Input('filter-type', 'value')]
-)
-def update_dashboard(filter_type):
-    if filter_type == 'Disaster':
-        query = {
-            "$and": [
-                {"breed": {"$regex": "Rottweiler", "$options": "i"}},
-                {"sex_upon_outcome": "Intact Male"},
-                {"age_upon_outcome_in_weeks": {"$gte": 20, "$lte": 300}}
-            ]
-        }
-    else:
-        query = {'animal_type': 'Dog'}    
-    df = pd.DataFrame.from_records(shelter.read(query))
-    if '_id' in df.columns:
-        df.drop(columns=['_id'], inplace=True)
-    return df.to_dict('records')
